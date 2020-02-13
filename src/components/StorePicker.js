@@ -2,7 +2,14 @@ import React from "react";
 
 class StorePicker extends React.Component {
   render() {
-    return <p> asdsa </p>;
+    return (
+      <form action="" className="store-selector">
+        {/* comments */}
+        <h2>Please Enter A store</h2>
+        <input type="text" required placeholder="Store Name" />
+        <button type="submit">Visit Store =></button>
+      </form>
+    );
   }
 }
 export default StorePicker;
