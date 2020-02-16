@@ -25,36 +25,23 @@ class AddFishForm extends Component {
   render() {
     return (
       <form className="fish-edit" onSubmit={this.createFish}>
-        <input
-          ref={this.nameRef}
-          type="text"
-          name="name"
-          placeholder="Name"
-          className=""
-        />
+        <input ref={this.nameRef} type="text" name="name" placeholder="Name" />
         <input
           ref={this.priceRef}
           type="text"
           name="price"
           placeholder="Price"
-          className=""
         />
-        <select ref={this.statusRef} name="status" className="">
+        <select ref={this.statusRef} name="status">
           <option value="available">Fresh!</option>
           <option value="unavailable">Sold Out!</option>
         </select>
-        <textarea
-          ref={this.descRef}
-          name="desc"
-          placeholder="Desc"
-          className=""
-        />
+        <textarea ref={this.descRef} name="desc" placeholder="Desc" />
         <input
           ref={this.imageRef}
           type="text"
           name="image"
           placeholder="Image"
-          className=""
         />
         <button type="submit">+ Add Fish</button>
       </form>

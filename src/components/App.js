@@ -2,6 +2,7 @@ import React from "react";
 import Header from "./Header";
 import Order from "./Order";
 import Inventory from "./Inventory";
+import sampleFishes from "../sample-fishes";
 
 // cc to import class
 // imr to import react
@@ -27,14 +28,23 @@ class App extends React.Component {
     });
   };
 
+  //  if a function updates the state, it needs to be where the state is
+  loadSampleFishes = () => {
+    this.setState({ fishes: sampleFishes });
+  };
+
   render() {
     return (
       <div className="catch-of-the-day">
         <div className="menu">
           <Header tagline="fresh seafood"></Header>
+          <ul className="fishes"></ul>
         </div>
         <Order></Order>
-        <Inventory addFish={this.addFish}></Inventory>
+        <Inventory
+          addFish={this.addFish}
+          loadSampleFishes={this.loadSampleFishes}
+        ></Inventory>
       </div>
     );
   }
