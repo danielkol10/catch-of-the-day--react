@@ -3,6 +3,7 @@ import Header from "./Header";
 import Order from "./Order";
 import Inventory from "./Inventory";
 import sampleFishes from "../sample-fishes";
+import Fish from "./Fish";
 
 // cc to import class
 // imr to import react
@@ -38,7 +39,16 @@ class App extends React.Component {
       <div className="catch-of-the-day">
         <div className="menu">
           <Header tagline="fresh seafood"></Header>
-          <ul className="fishes"></ul>
+          <ul className="fishes">
+            {/* take the objects from the state */}
+            {/* give a special key so that react identifies it faster */}
+            {/* details are info we are passing about each fish */}
+            {Object.keys(this.state.fishes).map(key => (
+              <Fish key={key} details={this.state.fishes[key]}>
+                {key}
+              </Fish>
+            ))}
+          </ul>
         </div>
         <Order></Order>
         <Inventory
