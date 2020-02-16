@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import { formatPrice } from "../helpers";
 class Fish extends Component {
+  // methods
+  handleClick = () => {
+    this.props.addToOrder(this.props.index); // add to order with the id of the fish
+  };
+
   render() {
     // destructure optional, take variables on the left and store whats right
     const { image, name, price, desc, status } = this.props.details;
@@ -14,7 +19,7 @@ class Fish extends Component {
         </h3>
         <p>{desc}</p>
         {/* disable button if fish is not available */}
-        <button disabled={!isAvailable}>
+        <button disabled={!isAvailable} onClick={this.handleClick}>
           {isAvailable ? "Add To Order" : "Sold Out!"}
         </button>
       </li>
