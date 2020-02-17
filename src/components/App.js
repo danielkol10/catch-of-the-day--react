@@ -17,10 +17,25 @@ class App extends React.Component {
   };
 
   componentDidMount() {
+    // first reinstate our localStorage
+    const localStorageRef = localStorage.getItem(
+      this.props.match.params.storeId
+    );
+    if (localStorageRef) {
+      this.setState({ order: JSON.parse(localStorageRef) });
+    }
+
     this.ref = base.syncState(`${this.props.match.params.storeId}/fishes`, {
       context: this,
       state: "fishes"
     });
+  }
+
+  componentDidUpdate() {
+    localStorage.setItem(
+      this.props.match.params.storeId,
+      JSON.stringify(this.state.order)
+    );
   }
 
   // unmount to prevent memory leak when user exits store
@@ -40,6 +55,15 @@ class App extends React.Component {
       // so if they are displayed anywhere on the page they will show up
       fishes: fishes
     });
+  };
+
+  updateFish = (key, updatedFish) => {
+    // 1. Take a copy of the current state
+    const fishes = { ...this.state.fishes };
+    // 2. Update that state
+    fishes[key] = updatedFish;
+    // 3. Set that to state
+    this.setState({ fishes: fishes });
   };
 
   //  if a function updates the state, it needs to be where the state is
@@ -80,7 +104,9 @@ class App extends React.Component {
         <Order fishes={this.state.fishes} order={this.state.order}></Order>
         <Inventory
           addFish={this.addFish}
+          updateFish={this.updateFish}
           loadSampleFishes={this.loadSampleFishes}
+          fishes={this.state.fishes}
         ></Inventory>
       </div>
     );
