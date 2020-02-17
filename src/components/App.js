@@ -4,6 +4,7 @@ import Order from "./Order";
 import Inventory from "./Inventory";
 import sampleFishes from "../sample-fishes";
 import Fish from "./Fish";
+import base from "../base";
 
 // cc to import class
 // imr to import react
@@ -14,6 +15,18 @@ class App extends React.Component {
     fishes: {},
     order: {}
   };
+
+  componentDidMount() {
+    this.ref = base.syncState(`${this.props.match.params.storeId}/fishes`, {
+      context: this,
+      state: "fishes"
+    });
+  }
+
+  // unmount to prevent memory leak when user exits store
+  componentWillUnmount() {
+    base.removeBinding(this.ref);
+  }
 
   // * to update state *
   addFish = fish => {
