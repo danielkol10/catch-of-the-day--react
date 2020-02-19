@@ -1,5 +1,5 @@
 [[redirects]]
-  from = "/*"
-  to = "/src/index.js"
+  from = "/"
+  to = "https://gallant-hoover-f5baef.netlify.com/"
   status = 200
   force = true
